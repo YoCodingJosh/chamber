@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16
+    volumes:
+      - database_data:/var/lib/postgresql/data
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    environment:
+      TZ: America/Chicago
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+  email:
+    image: inbucket/inbucket:latest
+    ports:
+      - "9000:9000"
+      - "2500:2500"
+      - "1100:1100"
+    restart: unless-stopped
+    environment:
+      - INBUCKET_MAILBOXNAMING=full
+    volumes:
+      - email_config:/config
+      - email_storage:/storage
+
+volumes:
+  database_data:
+    driver: local
+  email_config:
+    driver: local
+  email_storage:
+    driver: local
