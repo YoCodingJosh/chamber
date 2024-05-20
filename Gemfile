@@ -50,8 +50,14 @@ gem 'rails_cloudflare_turnstile'
 # Tailwind CSS
 gem 'tailwindcss-rails'
 
-# Resend.com
+# Resend.com emailer
 gem 'resend'
+
+# Foundation for Emails
+gem 'inky-rb', require: 'inky'
+# Stylesheet inlining for email
+gem 'premailer-rails'
+gem 'dartsass-sprockets'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

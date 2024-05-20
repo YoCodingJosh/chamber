@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chamber</title>
+    <title><%= get_page_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,7 +12,31 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <header class="bg-gray-800 sm:flex sm:justify-between sm:px-4 sm:py-3 sm:items-center" data-controller="layout">
+      <div class="flex items-center justify-between px-4 py-3 sm:p-0">
+        <div class="flex items-center gap-2">
+          <img class="h-8" src="/path/to/logo.png" alt="Chamber logo">
+          <h1 class="text-white text-xl font-semibold">Chamber</h1>
+        </div>
+        <div class="sm:hidden">
+          <button type="button" class="block text-gray-500 hover:text-white focus:text-white focus:outline-none" data-action="click->layout#toggleMenu">
+            <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <nav class="sm:block hidden" data-target="layout.menu">
+        <div class="px-2 pt-2 pb-4 sm:flex sm:p-0">
+          <a href="/" class="block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700">Home</a>
+          <a href="/about" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">About</a>
+          <%# TODO: wrap this in a "isLoggedIn" check %>
+          <a href="/login" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">Log in</a>
+          <a href="/register" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">Sign up</a>
+        </div>
+      </nav>
+    </header>
+    <main class="container mx-auto mt-5 px-5">
       <%= yield %>
     </main>
   </body>
