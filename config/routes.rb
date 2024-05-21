@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "home#index"
   get "about" => "home#about"
+
+  get "register" => "register#index"
+  post "register" => "register#register"
 end
