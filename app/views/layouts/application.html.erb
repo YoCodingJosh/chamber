@@ -15,11 +15,11 @@
   </head>
 
   <body>
+    <%= render 'shared/inline_svg' %>
     <header class="bg-gray-800 sm:flex sm:justify-between sm:px-4 sm:py-3 sm:items-center" data-controller="layout">
       <div class="flex items-center justify-between px-4 py-3 sm:p-0">
         <div class="flex items-center gap-2">
-          <img class="h-8" src="/path/to/logo.png" alt="Chamber logo">
-          <h1 class="text-white text-xl font-semibold">Chamber</h1>
+          <h1 class="text-white text-xl font-semibold">🤬 Chamber</h1>
         </div>
         <div class="sm:hidden">
           <button type="button" class="block text-gray-500 hover:text-white focus:text-white focus:outline-none" data-action="click->layout#toggleMenu">
@@ -40,6 +40,7 @@
       </nav>
     </header>
     <main class="container mx-auto mt-5 px-5">
+      <%= render 'shared/flash' %>
       <%= yield %>
     </main>
   </body>

@@ -5,6 +5,9 @@ class RegisterController < ApplicationController
     # TODO: check if the user is already logged in and redirect them if they are.
 
     @user ||= User.new
+
+    # Clear all the flash messages
+    flash.clear
   end
 
   def register
@@ -13,8 +16,8 @@ class RegisterController < ApplicationController
     @user = User.new(user_params)
 
     if @user.invalid?
-      # TODO: display a flash message with the errors
-      render json: { errors: @user.errors }, status: :bad_request
+      flash.now[:error] = @user.errors.full_messages.join(", ")
+      render "register/index", status: 400
     end
   end
 

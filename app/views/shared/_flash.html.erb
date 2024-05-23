@@ -1,0 +1,35 @@
+<% if error %>
+  <div class="bg-red-500 text-white flex items-center p-2 text-sm" role="alert">
+    <svg class="flex-shrink-0 mr-1 h-4 w-4" role="img" aria-label="Error:"><use xlink:href="#error-x-circle-fill"/></svg>
+    <div>
+      <%= error %>
+    </div>
+  </div>
+<% end %>
+
+<% if notice %>
+  <div class="bg-yellow-500 text-white flex items-center p-2 text-sm" role="alert">
+    <svg class="flex-shrink-0 mr-1 h-4 w-4" role="img" aria-label="Notice:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+      <%= notice %>
+    </div>
+  </div>
+<% end %>
+
+<% if info %>
+  <div class="bg-blue-500 text-white flex items-center p-2 text-sm" role="alert">
+    <svg class="flex-shrink-0 mr-1 h-4 w-4" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+    <div>
+      <%= info %>
+    </div>
+  </div>
+<% end %>
+
+<% if success %>
+  <div class="bg-green-500 text-white flex items-center p-2 text-sm" role="alert">
+    <svg class="flex-shrink-0 mr-1 h-4 w-4" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+      <%= success %>
+    </div>
+  </div>
+<% end %>
