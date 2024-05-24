@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   get "register" => "register#index"
   post "register" => "register#register"
+
+  get "login" => "login#index"
 end

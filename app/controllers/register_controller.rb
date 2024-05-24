@@ -16,6 +16,20 @@ class RegisterController < ApplicationController
     @user = User.new(user_params)
 
     if @user.invalid?
+      flash.now[:error] = "Could not register! Please fix the validation errors and try again."
+      flash.now[:validation_errors] = @user.errors
+      render "register/index", status: 400
+
+      return
+    end
+
+    @user.confirmation_token = SecureRandom.hex(32)
+    @user.confirmation_sent_at = Time.now
+
+    if @user.save
+      flash.now[:success] = "Registration successful! Please check your email to confirm your account."
+      render "register/index", status: 200
+    else
       flash.now[:error] = @user.errors.full_messages.join(", ")
       render "register/index", status: 400
     end

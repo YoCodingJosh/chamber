@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  add_flash_types :info, :error, :success, :warning
+  add_flash_types :info, :error, :success, :warning, :validation_errors
 
   # Add current_user to the view
   helper_method :current_user

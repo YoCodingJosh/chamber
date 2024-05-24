@@ -1,0 +1,23 @@
+<%= set_page_title "Login" %>
+
+<div class="flex justify-center items-center pt-16 pb-16">
+  <div class="w-full max-w-md my-auto">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h1 class="text-3xl font-bold text-center mb-5">Log in</h1>
+      <%= form_with model: @user, url: login_path, local: true do |f| %>
+        <div class="mb-4">
+          <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+          <%= f.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required: true %>
+        </div>
+        <div class="mb-6">
+          <%= f.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
+          <%= f.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required: true %>
+        </div>
+        <div class="flex items-center justify-between">
+          <%= f.submit "Log in", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+          <a href="/register" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Sign up</a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
