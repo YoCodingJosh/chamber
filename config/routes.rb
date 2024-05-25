@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get "register" => "register#index"
   post "register" => "register#register"
+  get "register/confirm/:id/:confirmation_token" => "register#confirm", as: "register_confirm"
 
   get "login" => "login#index"
+  post "login" => "login#login"
 end

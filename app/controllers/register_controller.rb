@@ -5,9 +5,6 @@ class RegisterController < ApplicationController
     # TODO: check if the user is already logged in and redirect them if they are.
 
     @user ||= User.new
-
-    # Clear all the flash messages
-    flash.clear
   end
 
   def register
@@ -27,11 +24,54 @@ class RegisterController < ApplicationController
     @user.confirmation_sent_at = Time.now
 
     if @user.save
-      flash.now[:success] = "Registration successful! Please check your email to confirm your account."
-      render "register/index", status: 200
+      flash[:success] = "Registration successful! Please check your email to confirm your account."
+      redirect_to "/login"
     else
       flash.now[:error] = @user.errors.full_messages.join(", ")
       render "register/index", status: 400
+    end
+  end
+
+  def confirm
+    # TODO: check if the user is already logged in and redirect them if they are.
+
+    request_id = params[:id]
+    confirmation_token = params[:confirmation_token]
+
+    user = User.find_by(id: request_id)
+
+    if user.nil?
+      flash.now[:error] = "User not found!"
+
+      render "register/index", status: 404
+      return
+    end
+
+    if user.confirmation_token != confirmation_token
+      flash.now[:error] = "Invalid confirmation token!"
+
+      render "register/index", status: 400
+      return
+    end
+
+    # check if the confirmation token has expired
+    if user.confirmation_sent_at < 1.day.ago
+      flash.now[:error] = "Confirmation token has expired! Please register again."
+
+      render "register/index", status: 400
+      return
+    end
+
+    user.confirmed_at = Time.now
+    user.confirmation_token = nil
+    user.confirmation_sent_at = nil
+
+    if user.save
+      flash[:success] = "Account confirmed! You can now login."
+      redirect_to "/login"
+    else
+      flash[:error] = user.errors.full_messages.join(", ")
+      redirect_to "/register"
     end
   end
 
