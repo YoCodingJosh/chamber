@@ -11,7 +11,7 @@
     <strong class="font-bold">Validation errors:</strong>
     <ul class="list-disc list-inside">
       <% flash[:validation_errors].each do |error| %>
-        <li><%= error.message %></li>
+        <li><%= error.full_message %></li>
       <% end %>
     </ul>
   </div>
