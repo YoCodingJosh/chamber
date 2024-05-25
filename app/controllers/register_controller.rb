@@ -1,6 +1,14 @@
 class RegisterController < ApplicationController
   before_action :validate_cloudflare_turnstile, only: [:register]
 
+  rescue_from RailsCloudflareTurnstile::Forbidden do |exception|
+    flash.now[:error] = "Please complete the CAPTCHA to register!"
+
+    @user ||= User.new(user_params) rescue User.new
+
+    render "register/index", status: 400
+  end
+
   def index
     # TODO: check if the user is already logged in and redirect them if they are.
 
