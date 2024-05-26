@@ -1,0 +1,16 @@
+<h1>Welcome to Chamber!</h1>
+<hr>
+
+<p>Hey there, <%= @user.username %>!</p>
+
+<p>Thanks for signing up! You're almost ready to start using Chamber.</p>
+
+<p>To finish signing up, you just need to confirm your email address. Click or copy the link below to confirm your email address:</p>
+
+<a href="<%= @user.confirmation_url %>"><%= @user.confirmation_url %></a>
+
+<p>Thanks so much for joining Chamber! We're excited to have you on board.</p>
+
+<hr>
+<p><small>This is a system-generated email. Please do not reply to this email.</small></p>
+<p><small>You are receiving this email because you signed up for Chamber. If you did not sign up for Chamber, please disregard this email.</small></p>

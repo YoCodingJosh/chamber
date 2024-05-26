@@ -32,6 +32,8 @@ class RegisterController < ApplicationController
     @user.confirmation_sent_at = Time.now
 
     if @user.save
+      UserMailer.with(user: @user).confirmation_email.deliver_now
+
       flash[:success] = "Registration successful! Please check your email to confirm your account."
       redirect_to "/login"
     else

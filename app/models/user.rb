@@ -9,10 +9,9 @@ class User < ApplicationRecord
 
   def confirmation_url
     if confirmation_token.nil?
-      return nil
+      nil
     end
 
-    # TODO: interpolate the host and port
-    "/register/confirm/#{id}/#{confirmation_token}"
+    "#{Rails.env.production? ? 'https://' : 'http://'}#{ENV['HOSTNAME']}#{ENV['PORT'] ? ":#{ENV['PORT']}" : ''}/register/confirm/#{id}/#{confirmation_token}"
   end
 end
