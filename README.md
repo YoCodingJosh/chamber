@@ -10,15 +10,15 @@ Current targeting `3.3.1` as specified in `.ruby-version`
 
 Hosting a development database and email is expensive, so test locally!
 
-A convienent `compose.yml` is provided under `chamber-dev-db`.
+A convenient `compose.yml` is provided under `chamber-dev-db`.
 
 * `cd chamber-dev-db && docker compose up -d`
-* `cd .. && cp .env.local .env`
-* `rails db:create db:migrate`
+* `cd .. && cp .env.local.template .env.local`
+* `rails db:prepare`
 
-Access the email server at `localhost:9000`
+Access the email server at `localhost:9000` or preview emails at `localhost:3000/rails/mailers/`
 
-Start dev server using `./bin/dev` - you may need to run `rbenv rehash` if you get a foreman error
+Start dev server using `rails server`.
 
 ## Production deployment
 
