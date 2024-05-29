@@ -4,4 +4,13 @@ class LoginController < ApplicationController
 
   def login
   end
+
+  def logout
+  end
+
+  def forgot_password
+  end
+
+  def reset_password
+  end
 end

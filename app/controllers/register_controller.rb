@@ -1,5 +1,5 @@
 class RegisterController < ApplicationController
-  before_action :validate_cloudflare_turnstile, only: [:register]
+  before_action :validate_cloudflare_turnstile, only: [:register], unless: -> { Rails.env.test? }
 
   rescue_from RailsCloudflareTurnstile::Forbidden do |exception|
     flash.now[:error] = "Please complete the CAPTCHA to register!"

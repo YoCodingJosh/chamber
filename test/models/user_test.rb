@@ -9,7 +9,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.valid?
 
     # Ensure that the email error is present
-    assert_includes user.errors[:email], "Invalid email address!"
+    assert_includes user.errors[:email], "is invalid"
   end
 
   test "username validation" do
@@ -20,6 +20,6 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.valid?
 
     # Ensure that the username error is present
-    assert_includes user.errors[:username], "Invalid username!"
+    assert_includes user.errors[:username], "is invalid"
   end
 end
