@@ -1,5 +1,16 @@
 <%= set_page_title "Login" %>
 
+<% if flash.any? && flash[:validation_errors] %>
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-8" role="alert">
+    <strong class="font-bold">Validation errors:</strong>
+    <ul class="list-disc list-inside">
+      <% flash[:validation_errors].each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="flex justify-center items-center pt-16 pb-16">
   <div class="w-full max-w-md my-auto">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
