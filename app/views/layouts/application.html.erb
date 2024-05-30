@@ -33,13 +33,18 @@
         <div class="px-2 pt-2 pb-4 sm:flex sm:p-0">
           <a href="/" class="block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700">Home</a>
           <a href="/about" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">About</a>
-          <%# TODO: wrap this in a "isLoggedIn" check %>
-          <a href="/login" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">Log in</a>
-          <a href="/register" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">Sign up</a>
+          <% if current_user != nil %>
+            <%= form_with url: '/logout', method: :post do |form| %>
+              <%= form.submit 'Log out', class: "mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2" %>
+            <% end %>
+          <% else %>
+            <a href="/login" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">Log in</a>
+            <a href="/register" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">Sign up</a>
+          <% end %>
         </div>
       </nav>
     </header>
-    <main class="container mx-auto mt-5 px-5">
+    <main class="mt-5 px-5">
       <%= render 'shared/flash' %>
       <%= yield %>
     </main>

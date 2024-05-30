@@ -7,10 +7,14 @@ class ApplicationController < ActionController::Base
   # Add the current_user to the controller
   attr_reader :current_user
 
-  # Add the current_user to the controller
-  # This is used in the filters
   def current_user
-    # TODO: implement the current_user method
-    nil
+    # If the user is already set, just return it
+    return @current_user if @current_user
+
+    # If the user is not set, but the session is, then find the user
+    @current_user = User.find(session[:user_id]) if session[:user_id]
+
+    # Return the user
+    @current_user
   end
 end

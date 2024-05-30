@@ -4,8 +4,8 @@ class LoginRequest
 
   include ActiveModel::Model
 
-  attr_accessor :username_email, :password
+  attr_accessor :email, :password
 
-  validates :username_email, presence: true
+  validates :email, presence: true
   validates :password, presence: true
   end

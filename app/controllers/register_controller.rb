@@ -10,13 +10,19 @@ class RegisterController < ApplicationController
   end
 
   def index
-    # TODO: check if the user is already logged in and redirect them if they are.
+    if current_user
+      redirect_to "/"
+      return
+    end
 
     @user ||= User.new
   end
 
   def register
-    # TODO: check if the user is already logged in and redirect them if they are.
+    if current_user
+      redirect_to "/"
+      return
+    end
 
     @user = User.new(user_params)
 
@@ -43,7 +49,10 @@ class RegisterController < ApplicationController
   end
 
   def confirm
-    # TODO: check if the user is already logged in and redirect them if they are.
+    if current_user
+      redirect_to "/"
+      return
+    end
 
     request_id = params[:id]
     confirmation_token = params[:confirmation_token]
