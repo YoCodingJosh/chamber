@@ -31,15 +31,15 @@
       </div>
       <nav class="sm:block hidden" data-target="layout.menu">
         <div class="px-2 pt-2 pb-4 sm:flex sm:p-0">
-          <a href="/" class="block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700">Home</a>
-          <a href="/about" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">About</a>
+          <a href="/" class="nav-link block px-2 py-1 font-semibold rounded hover:bg-gray-700 visited:text-white <%= current_page?(root_path) ? '!text-blue-400' : 'text-white' %>">Home</a>
+          <a href="/about" class="nav-link mt-1 block px-2 py-1 font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2 visited:text-white <%= current_page?(about_path) ? '!text-blue-400' : 'text-white' %>">About</a>
           <% if current_user != nil %>
             <%= form_with url: '/logout', method: :post do |form| %>
-              <%= form.submit 'Log out', class: "mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2" %>
+              <%= form.submit 'Log out', class: "nav-link mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2" %>
             <% end %>
           <% else %>
-            <a href="/login" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">Log in</a>
-            <a href="/register" class="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2">Sign up</a>
+            <a href="/login" class="nav-link mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2 visited:text-white <%= current_page?(login_path) ? '!text-blue-400' : 'text-white' %>">Log in</a>
+            <a href="/register" class="nav-link mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-700 sm:mt-0 sm:ml-2 visited:text-white <%= current_page?(register_path) ? '!text-blue-400' : 'text-white' %>">Sign up</a>
           <% end %>
         </div>
       </nav>

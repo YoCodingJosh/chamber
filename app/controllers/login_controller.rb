@@ -52,8 +52,8 @@ class LoginController < ApplicationController
   def logout
     reset_session
 
-    flash[:success] = "Logged out successfully!"
-    redirect_to "/login"
+    flash[:success] = "Logged out successfully. Thanks for coming by, see you again soon!"
+    redirect_to "/"
   end
 
   def forgot_password
