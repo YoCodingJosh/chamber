@@ -49,3 +49,18 @@ namespace :db do
     puts "Finished generating users."
   end
 end
+
+# This might create users with a duplicate email address, which would violate the unique constraint on the email column.
+# Use the following SQL to clean it up:
+
+# WITH duplicates AS (
+#     SELECT email
+#     FROM users
+#     GROUP BY email
+#     HAVING COUNT(*) > 1
+# )
+
+# --select * from duplicates;
+
+# DELETE FROM users
+# WHERE email IN (SELECT email FROM duplicates);
