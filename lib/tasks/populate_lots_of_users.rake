@@ -26,7 +26,9 @@ namespace :db do
             password_digest: Faker::Internet.password(min_length: 10),
             confirmation_token: nil,
             confirmation_sent_at: nil,
-            confirmed_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now)
+            confirmed_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+            totp_secret: ROTP::Base32.random,
+            totp_enabled: false,
           }
         else
           # Unconfirmed user
@@ -37,7 +39,9 @@ namespace :db do
             password_digest: Faker::Internet.password(min_length: 10),
             confirmation_token: SecureRandom.uuid,
             confirmation_sent_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
-            confirmed_at: nil
+            confirmed_at: nil,
+            totp_secret: nil,
+            totp_enabled: nil,
           }
         end
       end

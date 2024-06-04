@@ -85,6 +85,9 @@ class RegisterController < ApplicationController
     user.confirmation_token = nil
     user.confirmation_sent_at = nil
 
+    user.totp_enabled = false
+    user.totp_secret = ROTP::Base32.random
+
     if user.save
       flash[:success] = "Account confirmed! You can now login."
       redirect_to "/login"
