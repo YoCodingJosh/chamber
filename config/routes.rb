@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   get "login" => "login#index"
   post "login" => "login#login"
   post "logout" => "login#logout"
+
+  get "totp_enroll" => "user#enroll_totp"
 end

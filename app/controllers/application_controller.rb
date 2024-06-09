@@ -17,4 +17,7 @@ class ApplicationController < ActionController::Base
     # Return the user
     @current_user
   end
+
+  # TODO: add before_action to enroll user with TOTP
+  # before_action :enroll_user_with_totp
 end
