@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
     @current_user
   end
 
-  # TODO: add before_action to enroll user with TOTP
-  # before_action :enroll_user_with_totp
+  def enroll_user_with_totp
+    # If the user is not enrolled with TOTP, then redirect to the enrollment page
+    return if request.path == '/totp_enroll' || request.path == "/logout"
+
+    redirect_to "/totp_enroll" unless current_user.nil? || current_user&.totp_enabled?
+  end
+
+  before_action :enroll_user_with_totp
 end

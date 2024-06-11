@@ -1,7 +1,30 @@
-<h1 class="text-2xl font-bold">Enroll in 2FA</h1>
+<%= set_page_title "2FA Enrollment" %>
+
+<h1 class="text-2xl font-bold">Let's set up 2FA</h1>
 
 <p class="mt-4">To ensure account security, it is required to enroll in 2FA (Two-factor authentication)</p>
 
 <p class="mt-4">Scan the QR code below with your authenticator app to enroll in 2FA.</p>
 
-<img src="<%= @qr_code %>" alt="QR Code for 2FA" />
+<div class="flex flex-col sm:flex-row items-start">
+  <div class="mb-4 sm:mb-0 sm:mr-4">
+    <img src="<%= @qr_code %>" alt="QR Code for 2FA" />
+  </div>
+
+  <div>
+    <p class="mt-4">After scanning the code, enter the code from your authenticator app below:</p>
+    <form action="/enroll_totp" method="post">
+      <div class="mb-4">
+        <label for="code" class="block text-gray-700 text-sm font-bold mb-2">2FA Code</label>
+        <input type="text" id="code" name="code" class="shadow appearance-none border rounded min-w-0.5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+      </div>
+      <input type="hidden" name="csrf_token" value="<%= @csrf_token %>">
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+    </form>
+  </div>
+</div>
+
+<p class="mt-4">Can't scan the code? No problem! You can manually enter the code below.</p>
+<code class="mt-2 text-gray-600 pl-4">
+  <%= @manual_code %>
+</code>

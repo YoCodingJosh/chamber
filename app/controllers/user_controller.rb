@@ -10,7 +10,9 @@ class UserController < ApplicationController
     @qr_code =
       RQRCode::QRCode
         .new(totp.provisioning_uri(current_user.email))
-        .as_png(resize_exactly_to: 200)
+        .as_png(resize_exactly_to: 250)
         .to_data_url
+
+    @manual_code = totp.secret
   end
 end
