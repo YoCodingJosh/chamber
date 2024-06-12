@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   post "logout" => "login#logout"
 
   get "totp_enroll" => "user#enroll_totp"
+  post "totp_enroll" => "user#confirm_totp"
 end
