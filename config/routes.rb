@@ -20,4 +20,7 @@ Rails.application.routes.draw do
 
   get "totp_enroll" => "user#enroll_totp"
   post "totp_enroll" => "user#confirm_totp"
+
+  get "totp_verify" => "user#totp_verify"
+  post "totp_verify" => "user#verify_totp_code"
 end

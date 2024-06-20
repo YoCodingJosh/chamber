@@ -25,5 +25,14 @@ class ApplicationController < ActionController::Base
     redirect_to "/totp_enroll" unless current_user.nil? || current_user&.totp_enabled?
   end
 
+  def verify_totp_after_login
+    # If the user is not enrolled with TOTP, then redirect to the verification page
+    return if request.path == '/totp_verify' || request.path == "/logout" || request.path == "/totp_enroll"
+
+    # TODO: check session if we've already verified the TOTP
+    redirect_to "/totp_verify" unless current_user.nil? || session[:totp_verified]
+  end
+
   before_action :enroll_user_with_totp
+  before_action :verify_totp_after_login
 end

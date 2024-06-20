@@ -1,0 +1,13 @@
+<%= set_page_title "Verify 2FA" %>
+
+<h1 class="text-2xl font-bold">Verify 2FA</h1>
+<p class="mt-4">Enter the code from your authenticator app below:</p>
+
+<form action="/totp_verify" method="post">
+  <div class="mb-4">
+    <label for="code" class="block text-gray-700 text-sm font-bold mb-2">2FA Code</label>
+    <input type="text" id="code" name="code" class="shadow appearance-none border rounded min-w-0.5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+  </div>
+  <input type="hidden" name="csrf_token" value="<%= @csrf_token %>">
+  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+</form>

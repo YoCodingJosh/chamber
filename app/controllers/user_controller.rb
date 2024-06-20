@@ -35,4 +35,16 @@ class UserController < ApplicationController
       redirect_to "/totp_enroll"
     end
   end
+
+  def verify_totp_code
+    totp = ROTP::TOTP.new(current_user.totp_secret)
+
+    if totp.verify(params[:code])
+      session[:totp_verified] = true
+      redirect_to "/"
+    else
+      flash[:error] = "Invalid TOTP code!"
+      redirect_to "/totp_verify"
+    end
+  end
 end
